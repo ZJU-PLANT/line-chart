@@ -1,0 +1,36 @@
+import numpy as np
+import matplotlib.pyplot as plt
+#解决中文乱码问题
+plt.rcParams['font.sans-serif'] = ['Arial Unicode MS']
+# 解决负号无法正常显示的问题
+plt.rcParams['axes.unicode_minus']=False
+#在默认设置下matplotlib做出来的图表不是很清楚，可以将图表设置成矢量格式显示
+# plt.savefig("test.svg", format="svg")
+
+# 建立坐标系
+plt.subplot(1,1,1)
+# 指明x和y的值
+x = np.array([1,2,3,4,5,6,7,8,9])
+y1 = np.array([866,2335,5710,6482,6120,1605,3813,4428,4631])
+y2 = np.array([433,1167,2855,3241,1060,802,1906,2214,3515])
+# 绘图
+plt.plot(x,y1,color = 'k',linestyle = 'solid',linewidth =1,marker = 'o',markersize = 3,label = 'enrollment')
+plt.plot(x,y2,color = 'k',linestyle = 'dashdot',linewidth =1,marker = 'o',markersize = 3,label = 'activated')
+# 设置标题
+plt.title('xxxxxxxxxx',loc='center')
+# 添加数据标签
+for a,b in zip(x,y1):
+    plt.text(a,b,b,ha='center',va='bottom',fontsize = 11)
+for a,b in zip(x,y2):
+    plt.text(a,b,b,ha='center',va='bottom',fontsize = 11)
+
+# 设置x轴y轴的名称
+plt.xlabel('month')
+plt.ylabel('number of registered users')
+#设置x轴y轴的的刻度
+plt.xticks(np.arange(1,10,1),['1','2','3','4','5','6','7','8','9'])
+plt.yticks(np.arange(1000,7000,1000),['1000','2000','3000','4000','5000','6000','7000','8000','9000'])
+# 设置图例
+plt.legend()
+# 显示图表
+plt.show()
