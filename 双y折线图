@@ -1,0 +1,25 @@
+import matplotlib.pyplot as plt
+import numpy as np
+np.random.seed(4)
+
+fig = plt.figure()
+ax1 = fig.add_subplot(111)
+x = ['aaaa','bbbb','cccc','dddd','eeee']
+y1 = np.random.rand(5)
+y2 = np.random.rand(5)
+plot1 = ax1.plot(range(0, len(x)), y1, '-*', color='r', label='train')
+ax2 = ax1.twinx()  # this is the important function
+
+plot2 = ax2.plot(range(0, len(x)), y2, '-o', color='g', label='test')
+lines = plot1 + plot2
+
+for tl in ax1.get_yticklabels():
+    tl.set_color('r')
+for tl in ax1.get_xticklabels():
+    tl.set_rotation(45)
+    tl.set_fontsize(8)
+for tl in ax2.get_yticklabels():
+    tl.set_color('g')
+
+ax1.legend(lines, [l.get_label() for l in lines]) # only need one legend definition
+plt.show()
